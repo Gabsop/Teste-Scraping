@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Teste Scraping</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <script>
+      async function scraping() {
+        const input = document.querySelector("#search").value;
+        const response = await fetch("http://localhost:8000/?search=" + input);
+        const word = await response.json();
+        document.querySelector("#response").innerHTML = word.number;
+        document.querySelector("#search").value = "";
+      }
+    </script>
+    <div class="container">
+      <div class="results">
+        <h1>Resultado:</h1>
+        <h1 id="response"></h1>
+      </div>
+      <div class="search-input">
+        <input type="text" id="search" />
+        <button id="button" onclick="scraping()">Pesquisar</button>
+      </div>
+    </div>
+  </body>
+</html>
